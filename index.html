@@ -45,14 +45,16 @@
         }
 
         html {
-            overflow-x: hidden;
+            width: 100%;
+            overflow-x: clip;
         }
 
         body {
             background: var(--bg);
             color: var(--text);
             font-family: var(--f-main);
-            overflow-x: hidden;
+            width: 100%;
+            overflow-x: clip;
 
             transition:
                 background 0.5s ease,
@@ -261,16 +263,33 @@
 
         .hero-h1 {
             font-family: var(--f-head);
-
-            font-size: clamp(
-                50px,
-                15vw,
-                170px
-            );
-
-            line-height: 0.85;
-
+            /* Keep the full name inside the viewport at every screen width. */
+            font-size: clamp(2.5rem, 12.5vw, 10.625rem);
+            line-height: 0.95;
+            letter-spacing: -0.045em;
+            overflow-wrap: anywhere;
+            max-width: 100%;
             text-transform: uppercase;
+        }
+
+        .hero-h1 .outline {
+            display: inline-block;
+            max-width: 100%;
+            white-space: normal;
+            overflow-wrap: anywhere;
+        }
+
+        @media (max-width: 480px) {
+            .hero-h1 {
+                font-size: clamp(2.15rem, 11.5vw, 3.5rem);
+                letter-spacing: -0.055em;
+                line-height: 1;
+            }
+
+            .hero {
+                padding-left: 5vw;
+                padding-right: 5vw;
+            }
         }
 
         .outline {
